@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	data: new SlashCommandBuilder().setName("skip").setDescription("Passe à la musique suivante"),
@@ -13,7 +13,7 @@ module.exports = {
 		queue.skip()
         await interaction.editReply({
             embeds: [
-                new MessageEmbed().setDescription(`${currentSong.title} à bien été passé`).setThumbnail(currentSong.thumbnail)
+                new EmbedBuilder().setDescription(`${currentSong.title} à bien été passé`).setThumbnail(currentSong.thumbnail)
             ]
         })
 	},
