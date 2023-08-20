@@ -10,8 +10,8 @@ const TOKEN = process.env.TOKEN;
 
 const LOAD_SLASH = process.argv[2] == "load";
 
-const CLIENT_ID = "";
-const GUILD_ID = "";
+const CLIENT_ID = "";   //Enter ID//
+const GUILD_ID = "";   //Enter ID//
 
 const client = new Discord.Client({
   intents: ["GUILDS", "GUILD_VOICE_STATES"],
@@ -36,10 +36,10 @@ for (const file of slashFiles) {
   if (LOAD_SLASH) commands.push(slashcmd.data.toJSON());
 }
 
-// ---token here--
+
 if (LOAD_SLASH) {
   const rest = new REST({ version: "9" }).setToken(
-    "TOKEN"
+    "TOKEN" //enter token here//
   );
   console.log("Deploying slash commands");
   rest
@@ -76,5 +76,5 @@ if (LOAD_SLASH) {
     handleCommand();
   });
 
-  client.login("");
+  client.login("");  //enter client login//
 }
