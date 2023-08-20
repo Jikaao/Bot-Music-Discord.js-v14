@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { MessageEmbed } = require("discord.js")
+const { EmbedBuilder } = require("discord.js")
 
 module.exports = {
 	data: new SlashCommandBuilder().setName("info").setDescription("Regarder les infos de la musique en cours"),
@@ -16,7 +16,7 @@ module.exports = {
         const song = queue.current
 
 		await interaction.editReply({
-			embeds: [new MessageEmbed()
+			embeds: [new EmbedBuilder()
             .setThumbnail(song.thumbnail)
             .setDescription(`Joue actuellement [${song.title}](${song.url})\n\n` + bar)
         ],
