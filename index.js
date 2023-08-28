@@ -83,4 +83,3 @@ if (LOAD_SLASH) {
 
   botclient.login("TOKEN"); // ENTRER LE TOKEN ICI
 }
-
