@@ -71,10 +71,8 @@ if (LOAD_SLASH) {
   botclient.on("interactionCreate", (interaction) => {
     async function handleCommand() {
       if (!interaction.isCommand()) return;
-
       const slashcmd = botclient.slashcommands.get(interaction.commandName);
       if (!slashcmd) interaction.reply("Commande slash non valide");
-
       await interaction.deferReply();
       await slashcmd.run({ client: botclient, interaction });
     }
