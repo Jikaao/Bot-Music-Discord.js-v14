@@ -20,7 +20,6 @@ const botclient = new Discord.Client({
     intents: [
         Discord.GatewayIntentBits.Guilds,
         Discord.GatewayIntentBits.GuildVoiceStates,
-        // ... d'autres intents
     ]
 });
 
