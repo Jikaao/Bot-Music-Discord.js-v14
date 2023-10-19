@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
-	data: new SlashCommandBuilder().setName("skipto").setDescription("Passe la musique au numéro choisi #")
+	data: new SlashCommandBuilder().setName("skipto").setDescription("Passe la musique du numéro choisi #")
     .addNumberOption((option) => 
         option.setName("tracknumber").setDescription("The track to skip to").setMinValue(1).setRequired(true)),
 	run: async ({ client, interaction }) => {
