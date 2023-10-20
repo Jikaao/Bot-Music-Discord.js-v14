@@ -1,7 +1,7 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 
 module.exports = {
-	data: new SlashCommandBuilder().setName("aléatoire").setDescription("Melange les musiques de la liste d'attente"),
+	data: new SlashCommandBuilder().setName("aléatoire").setDescription("Melange les musiques dans la liste d'attente"),
 	run: async ({ client, interaction }) => {
 		const queue = client.player.getQueue(interaction.guildId)
 
