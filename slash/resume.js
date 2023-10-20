@@ -8,6 +8,6 @@ module.exports = {
 		if (!queue) return await interaction.editReply("Il n'y a pas de musique dans la file d'attente")
 
 		queue.setPaused(false)
-        await interaction.editReply("La musique à été relancé! Utilisez `/pause` pour mettre la musique en pause")
+        await interaction.editReply("La musique a été relancé ! Utilisez `/pause` pour mettre la musique en pause.")
 	},
 }
