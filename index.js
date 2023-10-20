@@ -63,7 +63,7 @@ if (LOAD_SLASH) {
     });
 } else {
   botclient.on("ready", () => {
-    botclient.user.setActivity(`Shiru tomber par terre`, { type: ActivityType.Watching, url: "https://discord.gg/FairyTailFR" });  //Watching/play/listeren/steaming
+    botclient.user.setActivity(``, { type: ActivityType.Watching, url: "" });  //Watching/play/listeren/steaming
     botclient.user.setStatus("dnd"); //"dnd"/"online"/"offline"/"idle"
     console.log(`Logged in as ${botclient.user.tag}`);
   });
