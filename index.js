@@ -1,28 +1,39 @@
 const Discord = require("discord.js");
-const dotenv = require("dotenv");
 const { REST } = require("@discordjs/rest");
 const { Routes } = require("discord-api-types/v9");
 const fs = require("fs");
 const { Player } = require("discord-player");
+const { ActivityType } = require("discord.js")
+const { TOKEN, CLIENT_ID, GUILD_ID } = require('./config.json');
 
-dotenv.config();
-const TOKEN = process.env.TOKEN;
-
+const botclient = new Discord.Client({
+    intents: [
+        Discord.GatewayIntentBits.Guilds,
+        Discord.GatewayIntentBits.GuildVoiceStates,
+        // ... d'autres intents
+    ]
+});
 const LOAD_SLASH = process.argv[2] == "load";
 
-const CLIENT_ID = "882044360827490354";
-const GUILD_ID = "854184880417538058";
 
-const client = new Discord.Client({
-  intents: ["GUILDS", "GUILD_VOICE_STATES"],
-});
 
-client.slashcommands = new Discord.Collection();
-client.player = new Player(client, {
+
+botclient.slashcommands = new Discord.Collection();
+botclient.player = new Player(botclient, {
   ytdlOptions: {
     quality: "highestaudio",
     highWaterMark: 1 << 25,
   },
+});
+
+botclient.player.on("error", (queue, error) => {
+  console.error(`Error in queue "${queue.guild.name}":`, error);
+  // Vous pouvez ajouter ici du code pour gérer les erreurs liées à la file d'attente
+});
+
+botclient.player.on("connectionError", (queue, error) => {
+  console.error(`Connection error in queue "${queue.guild.name}":`, error);
+  // Vous pouvez ajouter ici du code pour gérer les erreurs de connexion
 });
 
 let commands = [];
@@ -32,21 +43,19 @@ const slashFiles = fs
   .filter((file) => file.endsWith(".js"));
 for (const file of slashFiles) {
   const slashcmd = require(`./slash/${file}`);
-  client.slashcommands.set(slashcmd.data.name, slashcmd);
+  botclient.slashcommands.set(slashcmd.data.name, slashcmd);
   if (LOAD_SLASH) commands.push(slashcmd.data.toJSON());
 }
 
 if (LOAD_SLASH) {
-  const rest = new REST({ version: "9" }).setToken(
-    "ODgyMDQ0MzYwODI3NDkwMzU0.YS1p0w.ui-sNxptIKkSkzjmgrypWaAx07o"
-  );
-  console.log("Deploying slash commands");
+  const rest = new REST({ version: "9" }).setToken(TOKEN);
+  console.log("Commandes slash déployé");
   rest
     .put(Routes.applicationGuildCommands(CLIENT_ID, GUILD_ID), {
       body: commands,
     })
     .then(() => {
-      console.log("Successfully loaded");
+      console.log("Chargement terminé.");
       process.exit(0);
     })
     .catch((err) => {
@@ -56,24 +65,26 @@ if (LOAD_SLASH) {
       }
     });
 } else {
-  client.on("ready", () => {
-    client.user.setActivity(`Fairy Tail`, { type: "WATCHING", }
-    );
-
-    console.log(`Logged in as ${client.user.tag}`);
+  botclient.on("ready", () => {
+    botclient.user.setPresence({
+      activities: [{ name: `Shiru si tu lis ça, tu pues`, type: ActivityType.Custom }],
+      status: 'dnd',
+    });
+    console.log(`${botclient.user.tag} en ligne !`);
   });
-  client.on("interactionCreate", (interaction) => {
+  botclient.on("interactionCreate", (interaction) => {
     async function handleCommand() {
       if (!interaction.isCommand()) return;
 
-      const slashcmd = client.slashcommands.get(interaction.commandName);
+      const slashcmd = botclient.slashcommands.get(interaction.commandName);
       if (!slashcmd) interaction.reply("Commande slash non valide");
 
       await interaction.deferReply();
-      await slashcmd.run({ client, interaction });
+      await slashcmd.run({ client: botclient, interaction });
     }
     handleCommand();
   });
 
-  client.login("ODgyMDQ0MzYwODI3NDkwMzU0.YS1p0w.ui-sNxptIKkSkzjmgrypWaAx07o");
+  botclient.login(TOKEN); //bot Token
 }
+
