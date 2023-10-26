@@ -89,3 +89,4 @@ if (LOAD_SLASH) {
 
   botclient.login(TOKEN); //bot Token
 }
+  )}
