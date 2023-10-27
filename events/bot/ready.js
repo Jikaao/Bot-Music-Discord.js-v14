@@ -1,3 +1,5 @@
+const { ActivityType } = require("discord.js")
+
 module.exports = async (client) => {
     //icon&name set
     const iconurl = await client.user.displayAvatarURL()
@@ -7,4 +9,17 @@ module.exports = async (client) => {
     global.botname = name;
     global.devname = dev.username
     global.devicon = await dev.avatarURL()
+
+  
+    
+        client.user.setPresence({
+            activities:[{
+                name: "discord.gg/Fairytailfr", 
+                type: ActivityType.Custom }], // Playing, Competing, Custom, Listening, Streaming, Watching
+                status: "dnd",
+            });
+    
+            console.log(`Le bot ${client.user.tag} est en ligne !`);
+    ;
+
 }

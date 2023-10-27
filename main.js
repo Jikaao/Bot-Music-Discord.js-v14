@@ -1,31 +1,16 @@
 //module-loading
-const { Client, GatewayIntentBits, ActivityType, REST, Routes } = require("discord.js")
+const { Client, Collection, Events, REST, Routes } = require("discord.js")
 const { Player } = require("discord-player")
 const { readdirSync } = require('fs');
 const glob = require("glob")
 require('dotenv').config();
 
 //create-client
-const client = new Client({
-    intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildVoiceStates,
-    ]
-});
+const client = new Client({intents: 3276799})
 client.developper = process.env.clientid
 client.panels = new Map()
 client.checked = require("./utils/checked")
 client.say = require("./utils/say")
-
-client.on('ready', () => {
-    console.log(`Le bot ${client.user.tag} est en ligne !`);
-
-	client.user.setPresence({
-		activities:[{
-			name: "discord.gg/Fairytailfr", type: ActivityType.Custom }], // Playing, Competing, Custom, Listening, Streaming, Watching
-		status: "dnd",
-	});
-});
 
 //set-slashCommands
 const rest = new REST({ version: "10" }).setToken(process.env.token)
