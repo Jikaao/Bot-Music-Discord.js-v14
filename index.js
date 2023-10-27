@@ -15,9 +15,6 @@ const botclient = new Discord.Client({
 });
 const LOAD_SLASH = process.argv[2] == "load";
 
-
-
-
 botclient.slashcommands = new Discord.Collection();
 botclient.player = new Player(botclient, {
   ytdlOptions: {
@@ -43,7 +40,6 @@ const slashFiles = fs
   .filter((file) => file.endsWith(".js"));
 for (const file of slashFiles) {
   const slashcmd = require(`./slash/${file}`);
-  botclient.slashcommands.set(slashcmd.data.name, slashcmd);
   botclient.slashcommands.set(slashcmd.data.name, slashcmd);
   if (LOAD_SLASH) commands.push(slashcmd.data.toJSON());
 }
@@ -73,15 +69,13 @@ if (LOAD_SLASH) {
     });
     console.log(`${botclient.user.tag} en ligne !`);
   });
-  botclient.on("interactionCreate", (interaction) => {
+
   botclient.on("interactionCreate", (interaction) => {
     async function handleCommand() {
       if (!interaction.isCommand()) return;
-
       const slashcmd = botclient.slashcommands.get(interaction.commandName);
       if (!slashcmd) interaction.reply("Commande slash non valide");
       await interaction.deferReply();
-      await slashcmd.run({ client: botclient, interaction });
       await slashcmd.run({ client: botclient, interaction });
     }
     handleCommand();
@@ -89,4 +83,4 @@ if (LOAD_SLASH) {
 
   botclient.login(TOKEN); //bot Token
 }
-  )}
+  
