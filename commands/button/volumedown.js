@@ -5,5 +5,5 @@ module.exports = async (interaction, client) => {
     const volume = queue.node.volume;
     if (volume < 2) return
     await queue.node.setVolume(volume -2)
-    await client.say.success(interaction, `Volume down. Current volume: ${String(volume-2)}\nJ'ai baissé le volume. volume actuel: ${String(volume-2)}`)
+    await client.say.success(interaction, `Volume down. Current volume: ${String(volume-2)}\nJ'ai baissé le volume. Volume actuel: ${String(volume-2)}`)
 }

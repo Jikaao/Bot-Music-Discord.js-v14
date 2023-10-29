@@ -113,7 +113,7 @@ function queue_embed(interaction, queue, multiple, page) {
         .setDescription(
             tracks.map(
                 (track, i) =>
-                    `${String(10 * (page - 1) + i + 1)}: [(URL)](${track.url})\n` + "```" + track.title + "```"
+                    `${String(10 * (page - 1) + i + 1)}: [(Lien de la musique)](${track.url})\n` + "```" + track.title + "```"
             ).join("\n")
         )
     return embed

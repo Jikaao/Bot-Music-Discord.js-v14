@@ -5,7 +5,7 @@ module.exports = async (interaction, client) => {
     if (!boolean) return await interaction.reply(queue)
     const modal = new ModalBuilder()
         .setCustomId('play')
-        .setTitle('Joué une ou plusieurs musiques');
+        .setTitle('Joue une ou plusieurs musiques');
     const source = new TextInputBuilder()
         .setCustomId('input_source')
         .setLabel("Saisissez le titre ou l'URL de la musique.")
