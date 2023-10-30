@@ -33,6 +33,6 @@ module.exports = {
     await interaction.deferReply();
     await interaction.deleteReply();
     queue.node.jump(index);
-    await client.say.success(interaction, "complete!!\nLa musique a été skip.");
+    await client.say.success(interaction, "complete!!\nLa musique a été Skip.");
   },
 };

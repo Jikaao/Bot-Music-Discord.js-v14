@@ -8,7 +8,7 @@ module.exports = {
       oprion
         .setName("index")
         .setDescription(
-          "Entré le numéro de la musique que vous voulez supprimé."
+          "Entrez le numéro de la musique que vous voulez supprimer."
         )
         .setRequired(true)
     ),

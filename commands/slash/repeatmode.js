@@ -4,7 +4,7 @@ const { QueueRepeatMode } = require("discord-player");
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("repeatmode")
-    .setDescription("Selectioné le mode de répétition")
+    .setDescription("Sélectionné le mode de répétition.")
     .addStringOption((option) =>
       option
         .setName("selectmode")
@@ -22,7 +22,7 @@ module.exports = {
             value: "0",
           },
           {
-            name: "Repeat one song. / 1 musiques répétée",
+            name: "Repeat one song. / Répete 1 musique",
             value: "1",
           },
           {
@@ -30,7 +30,7 @@ module.exports = {
             value: "2",
           },
           {
-            name: "autoplay / lecture automatique",
+            name: "autoplay / Lecture automatique",
             value: "3",
           }
         )
@@ -43,13 +43,13 @@ module.exports = {
       let status = null;
       switch (queue.repeatMode) {
         case 3:
-          status = "autoplay / lecture automatique";
+          status = "autoplay / Lecture automatique";
           break;
         case 2:
           status = "All songs repeat / Répétez toutes les musiques";
           break;
         case 1:
-          status = "Repeat one song. / 1 musique répétée";
+          status = "Repeat one song. / Répete 1 musique";
           break;
         case 0:
           status = "Normal playback. / Lecture normale";
@@ -60,7 +60,7 @@ module.exports = {
       let status = null;
       switch (Number(mode)) {
         case 3:
-          status = "autoplay / lecture automatique";
+          status = "autoplay / Lecture automatique";
           queue.setRepeatMode(QueueRepeatMode.AUTOPLAY);
           break;
         case 2:
@@ -68,7 +68,7 @@ module.exports = {
           queue.setRepeatMode(QueueRepeatMode.QUEUE);
           break;
         case 1:
-          status = "Repeat one song. / 1 musique répétée";
+          status = "Repeat one song. / Répete 1 musique";
           queue.setRepeatMode(QueueRepeatMode.TRACK);
           break;
         case 0:
