@@ -9,11 +9,11 @@ const {
 module.exports = {
   data: new SlashCommandBuilder()
     .setName("play")
-    .setDescription("Joué une ou plusieurs musiques."),
+    .setDescription("Joue une ou plusieurs musiques."),
   async execute(interaction, client) {
     const modal = new ModalBuilder()
       .setCustomId("play")
-      .setTitle("Joué une ou plusieurs musique.");
+      .setTitle("Joue une ou plusieurs musique.");
     const source = new TextInputBuilder()
       .setCustomId("input_source")
       .setLabel("Saisissez le titre ou l'URL de la musique.")
