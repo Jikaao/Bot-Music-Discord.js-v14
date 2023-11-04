@@ -80,7 +80,7 @@ module.exports = {
       await interaction.deleteReply();
       await client.say.success(
         interaction,
-        "Complete!! / Modification terminée\n" + status
+        "Complete!! / Modification terminée.\n" + status
       );
     }
   },

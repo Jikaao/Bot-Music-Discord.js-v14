@@ -9,7 +9,7 @@ async function checkQueue(interaction) {
     const memberChannelId = interaction.member?.voice?.channelId;
     const queueChannelId = queue?.channel.id;
     if (memberChannelId != queueChannelId) return [false, {
-        content: "Connect to the same VC as the BOT.\n```BOT Veuillez le connecter au même chat vocal.```",
+        content: "Connect to the same VC as the BOT.\n```BOT Veuillez vous connecter au même chat vocal.```",
         ephemeral: true,
     }];
     return [true, queue]

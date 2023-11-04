@@ -17,7 +17,7 @@ module.exports = async (client) => {
         type: ActivityType.Custom, // Playing, Competing, Custom, Listening, Streaming, Watching
       },
     ], 
-    status: "dnd",
+    status: "dnd", // online, offline, idle, dnd
   });
 
   console.log(`Le bot ${client.user.tag} est en ligne !`);
