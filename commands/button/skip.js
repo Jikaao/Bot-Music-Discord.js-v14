@@ -3,5 +3,5 @@ module.exports = async(interaction, client) => {
     if (!boolean) return await interaction.reply(queue)
     await interaction.deferUpdate()
     await queue.node.skip();
-    return await client.say.success(interaction, "Skipped tracks.\nLa musique est skip.")
+    return await client.say.success(interaction, "Skipped tracks.\nLa musique a été skip.")
 }
